@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateBookshelvesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
+        if (!Schema::hasTable('bookshelves')) {
+            Schema::create('bookshelves', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('name', 30);
-                $table->string('email', 256)->unique();
-                $table->string('password', 50);
+                $table->unsignedInteger('user_id')->references('id')->on('users');
+                $table->unsignedInteger('book_id')->references('id')->on('books');
                 $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
             });
@@ -32,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bookshelves');
     }
 }
