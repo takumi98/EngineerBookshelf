@@ -16,9 +16,9 @@ class CreateBooksTable extends Migration
         if (!Schema::hasTable('books')) {
             Schema::create('books', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedInteger('bookshelf_id')->references('id')->on('bookshelves');
-                $table->unsignedInteger('category_id')->references('id')->on('categories');
-                $table->unsignedInteger('evaluation_id')->references('id')->on('evaluations');
+                $table->unsignedBigInteger('bookshelf_id');
+                $table->unsignedBigInteger('category_id');
+                $table->unsignedBigInteger('evaluation_id');
                 $table->string('name', 100);
                 $table->string('image_file_name', 255);
                 $table->string('publisher', 100)->nullable();
@@ -28,6 +28,11 @@ class CreateBooksTable extends Migration
                 $table->boolean('is_published')->default(true);
                 $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
+
+                // 外部キー制約
+                $table->foreign('bookshelf_id')->references('id')->on('bookshelves')->onDelete('cascade');
+                $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+                $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
             });
         }
     }
