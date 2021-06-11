@@ -16,7 +16,7 @@ class CreateEvaluationsTable extends Migration
         if (!Schema::hasTable('evaluations')) {
             Schema::create('evaluations', function (Blueprint $table) {
                 $table->tinyInteger('code')->autoIncrement();
-                $table->string('name', 100)->unique();
+                $table->string('content', 100)->unique();
                 $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
             });
