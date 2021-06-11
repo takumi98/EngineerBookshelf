@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('bookshelf_id');
                 $table->unsignedBigInteger('category_id');
-                $table->unsignedBigInteger('evaluation_id');
+                $table->tinyInteger('evaluation_id');
                 $table->string('name', 100);
                 $table->string('image_file_name', 255);
                 $table->string('publisher', 100)->nullable();
@@ -32,7 +32,7 @@ class CreateBooksTable extends Migration
                 // 外部キー制約
                 $table->foreign('bookshelf_id')->references('id')->on('bookshelves')->onDelete('cascade');
                 $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-                $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
+                $table->foreign('evaluation_id')->references('code')->on('evaluations')->onDelete('cascade');
             });
         }
     }

@@ -18,7 +18,7 @@ class CreateBookshelvesTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('user_id');
                 $table->boolean('is_deleted')->default(false);
-                $table->timestamps();
+                $table->dateTime('created_at',0)->nullable();
 
                 // 外部キー制約
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
