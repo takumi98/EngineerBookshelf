@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         // usersテーブルでseederを実行
         // $this->call(UsersTableSeeder::class);
-        $this->call(EvaluationsTableSeeder::class);
+        // $this->call(EvaluationsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }
