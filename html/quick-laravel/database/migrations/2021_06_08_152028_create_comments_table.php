@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('user_id');
                 $table->unsignedBigInteger('book_id');
-                $table->string('comment', 100)->unique();
+                $table->string('comment', 100);
                 $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
                 
