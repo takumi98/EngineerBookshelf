@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ログイン画面を表示
+Route::get('/login', 'UserController@showLogin');
