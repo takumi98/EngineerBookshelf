@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 // ログイン画面を表示
 Route::get('/login', 'UserController@showLogin');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
