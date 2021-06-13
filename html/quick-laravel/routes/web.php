@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 // ログイン画面を表示
-Route::get('/login', 'UserController@showLogin');
+// Route::get('/login', 'UserController@showLogin');
 
 Auth::routes();
 
