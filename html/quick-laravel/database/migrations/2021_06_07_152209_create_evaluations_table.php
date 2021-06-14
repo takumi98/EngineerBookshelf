@@ -19,6 +19,9 @@ class CreateEvaluationsTable extends Migration
                 $table->string('content', 100)->unique();
                 $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
+
+                // 主キー
+                $table->primary('code');
             });
         };
     }
