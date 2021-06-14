@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => '1',
                 'name' => 'takumi',
-                'email' => 'koba327konohachi@gmail.com',
+                'email' => '98@example.co.jp',
                 'password' => 'root',
                 'is_deleted' => '0',
                 'created_at' => date('Y-m-d H:i:s'),
