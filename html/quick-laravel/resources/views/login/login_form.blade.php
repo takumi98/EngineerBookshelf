@@ -13,6 +13,7 @@
 </head>
 <body class="text-center">
   <form class="form-signin" method="POST" action="{{ route('login')}}">
+  @csrf
     <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
     <label for="inputEmail" class="sr-only">メールアドレス</label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="メールアドレス" required autofocus>
