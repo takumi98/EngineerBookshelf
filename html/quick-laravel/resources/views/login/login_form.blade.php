@@ -14,11 +14,26 @@
 <body class="text-center">
   <form class="form-signin" method="POST" action="{{ route('login')}}">
   @csrf
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            <!-- ログインエラー -->
+            @if (session('login_error'))
+              <div class="alert alert-danger">
+                {{ session('login_error') }}
+              </div>
+            @endif
+        </ul>
+    </div>
+@endif
     <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
     <label for="inputEmail" class="sr-only">メールアドレス</label>
-    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="メールアドレス" required autofocus>
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="メールアドレス">
     <label for="inputPassword" class="sr-only">パスワード</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="パスワード" required>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="パスワード">
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
   </form>
 </body>
