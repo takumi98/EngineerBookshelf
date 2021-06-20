@@ -31,9 +31,9 @@
 @endif
     <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
     <label for="inputEmail" class="sr-only">メールアドレス</label>
-    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="メールアドレス">
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="メールアドレス" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="パスワード">
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="パスワード" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
   </form>
 </body>
