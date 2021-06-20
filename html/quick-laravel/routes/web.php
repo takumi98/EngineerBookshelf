@@ -1,6 +1,9 @@
 <?php
 
 //テストページ
+
+use App\Http\Controllers\AuthController;
+
 Route::get('/test', 'AuthController@test');
 
 // ログイン前
@@ -17,10 +20,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('home', function() {
     return view('home');
   })->name('home');
+  // ログアウト
+  Route::post('logout', 'AuthController@logout')->name('logout');
 });
-// // ログインページ
-// Route::get('/', 'AuthController@showLogin')->name('showLogin');
-
-// // ログインページリダイレクト
-// Route::post('/login', 'AuthController@login')->name('login');
-
