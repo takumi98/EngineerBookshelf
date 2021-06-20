@@ -24,19 +24,13 @@ class AuthController extends Controller
     }
     // ログイン画面の表示
     public function showLogin(){
-        // $encryption = encrypt('root');
-        // $decryption = decrypt('eyJpdiI6Ik5KazJXaDIxMEVDbFprRW9hZm9aRHc9PSIsInZhbHVlIjoiUVFIYWR3S3JhMCtreVhrRlZIR05KZz09IiwibWFjIjoiOGY3NTc0N2E1ZDMxODkyZjUzNjQ4NWU4M2E2YTc0Zjc3YTk5MWNkM2I1ODMxMzBmNThkNDUzZDc0YTBhZGQ0YiJ9');
-        // ddd($decryption);
         return view('login.login_form');
     }
 
     public function login(LoginFormRequest $request) {
-        // $email = $req->email;
-        // $password = $req->password;
-        // ddd($request->all());
-        // ddd($email,$password);
 
-        $credentials = $request->only('eamil', 'password');
+        $credentials = $request->only('email', 'password');
+        // ddd($credentials);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -45,7 +39,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'login_error' => 'メールアドレスかパスワードが間違っています。',
+            'login_error' => 'メールアドレスかパスワードが間違っています',
         ]);
     }
 }
