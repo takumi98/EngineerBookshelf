@@ -1,5 +1,8 @@
 <?php
 
+//テストページ
+Route::get('/test', 'AuthController@test');
+
 // ログインページ
 Route::get('/', 'AuthController@showLogin')->name('showLogin');
 
