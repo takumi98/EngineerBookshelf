@@ -10,6 +10,7 @@ Route::get('/test', 'AuthController@test');
 Route::group(['middleware' => ['guest']], function () {
   // ログインフォーム表示
   Route::get('/', 'AuthController@showLogin')->name('showLogin');
+  Route::get('/login', 'AuthController@showLogin')->name('showLogin');
   // ログイン処理
   Route::post('/login', 'AuthController@login')->name('login');
 });
