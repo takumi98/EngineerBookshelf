@@ -46,6 +46,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
         ],
+        'custom' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/custom.log'),
+            'lavel' => 'debug',
+            'permission' => 0666,
+        ],
 
         'daily' => [
             'driver' => 'daily',
