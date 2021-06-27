@@ -26,6 +26,12 @@
                 {{ session('login_error') }}
               </div>
             @endif
+            
+            @if (session('logout'))
+              <div class="alert alert-danger">
+                {{ session('logout') }}
+              </div>
+            @endif
         </ul>
     </div>
 @endif
