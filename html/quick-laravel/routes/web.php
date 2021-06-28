@@ -23,4 +23,6 @@ Route::group(['middleware' => ['auth']], function() {
   })->name('home');
   // ログアウト
   Route::post('logout', 'AuthController@logout')->name('logout');
+  // 登録技術書一覧
+  Route::get('/entry_books', 'BookController@showEntryBooks')->name('ebooks');
 });
