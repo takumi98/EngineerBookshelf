@@ -24,11 +24,12 @@
     </tr>
   </thead>
   <tbody>
+    @foreach ($books as $eb)
     <tr>
-      <td>width: 40%</td>
-      <td>width: 20%</td>
-      <td>width: 15</td>
-      <td>width: 20%</td>
+      <td>{{ $eb->image_file_name}}</td>
+      <td>{{ $eb->name}}</td>
+      <td>{{ $eb->publisher}}</td>
+      <td>{{ $eb->release_date}}</td>
       <td>
         <div class="btn-group-vertical">
           <button>編集</button>
@@ -36,20 +37,10 @@
         </div>
       </td>
     </tr>
-    <tr>
-      <td>width: 40%</td>
-      <td>width: 20%</td>
-      <td>width: 15</td>
-      <td>width: 20%</td>
-      <td>
-        <div class="btn-group-vertical">
-          <button>編集</button>
-          <button>削除</button>
-        </div>
-      </td>
-    </tr>
+    @endforeach
   </tbody>
   </table>
+  {{ $books->links()}}
   </div>
 </body>
 </html>
