@@ -27,6 +27,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/entry_books', 'BookController@showEntryBooks')->name('ebooks');
   // 技術書登録画面
   Route::get('/entry_books_form', 'BookController@showEntryForm')->name('enform');
-  
-  Route::post('/entry_books', 'BookController@showEntryBooks')->name('ebooks');
+  // 技術書登録処理
+  Route::post('/entry_books', 'BookController@exeEntryForm')->name('ebooks');
 });

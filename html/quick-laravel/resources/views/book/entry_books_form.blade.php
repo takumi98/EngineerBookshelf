@@ -12,6 +12,19 @@
 </head>
 
 <body>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<?php
+        Log::debug('エラーメッセージ');
+        Log::debug($errors);
+?>
   <div class="container">
     <h1>書籍情報</h1>
     <form class="form-signin" method="POST" action="{{ route('ebooks')}}">
@@ -109,14 +122,14 @@
         </div>
       </div>
       <div class="row my-5">
-        <div class="back col-2 offset-3">
-          <button>戻る</button>
+        <div class="re col-2 offset-3">
+          <button name="re" value="re">戻る</button>
         </div>
         <div class="entry col-2">
-          <button>登録して戻る</button>
+          <button name="entry" value="entry">登録して戻る</button>
         </div>
         <div class="continue col-2">
-          <button>続けて登録</button>
+          <button class="continue" value="continue">続けて登録</button>
         </div>
       </div>
     </form>

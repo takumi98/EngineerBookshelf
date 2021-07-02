@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\sampleRequest;
 
 class BookController extends Controller
 {
@@ -24,11 +25,23 @@ class BookController extends Controller
         $evaluations = DB::table('evaluations')->get();
         // カテゴリーを取得
         $categories = DB::table('categories')->get();
-        Log::debug('評価');
-        Log::debug($evaluations);
-        Log::debug('カテゴリー');
-        Log::debug($categories);
+        // Log::debug('評価');
+        // Log::debug($evaluations);
+        // Log::debug('カテゴリー');
+        // Log::debug($categories);
 
         return view('book.entry_books_form', ['evaluations' => $evaluations],['categories' => $categories]);
+    }
+
+    //技術書登録の処理
+    public function exeEntryForm(sampleRequest $request){
+        Log::debug('<<<<<<<<<<<<');
+        Log::debug('デバッグ');
+        Log::debug('入力値');
+        Log::debug($request);
+
+        // 登録本の表示
+        $books = DB::table('books')->paginate(20);
+        return view('book.entry_books', ['books' => $books]);
     }
 }
