@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+}
+
+.entrytitle {
+}
+
+.entryform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.entryform > input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.entryform > .published {
+    width: 100%;
+}

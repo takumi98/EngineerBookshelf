@@ -14,4 +14,7 @@ class Book extends Model
     // [
     //     ''
     // ];
+
+    // 発売日のデータ型を変換
+    
 }
