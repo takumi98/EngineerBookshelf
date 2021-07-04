@@ -24,16 +24,16 @@ class sampleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required | max:100',
-            'date' => 'date',
+            'name' => 'required | max:100',
+            'release_date' => 'date',
             'price' => 'numeric',
         ];
     }
     public function messages()
     {
         return [
-            'title.required' => '書籍のタイトルを入力してください(100文字以内)',
-            'date.date' => '日付を入力してください',
+            'name.required' => '書籍のタイトルを入力してください(100文字以内)',
+            'release_date.date' => '日付を入力してください',
             'price.numeric' => '数字を入力してください',
         ];
     }

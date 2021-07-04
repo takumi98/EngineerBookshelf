@@ -35,7 +35,7 @@
         </div>
         <div class="entryform col-5">
           <label for="inputTitle"></label>
-          <input type="text" id="inputTitle" name="title">
+          <input type="text" id="inputTitle" name="name">
         </div>
       </div>
       <div class="row mt-5">
@@ -44,7 +44,7 @@
         </div>
         <div class="entryform col-5">
           <label for="inputImg"></label>
-          <input type="text" id="inputImg" name="img">
+          <input type="text" id="inputImg" name="image_file_name">
         </div>
       </div>
       <div class="row mt-5">
@@ -62,7 +62,7 @@
         </div>
         <div class="entryform col-5">
           <label for="inputReleaseDate"></label>
-          <input type="text" id="inpuReleaseDate" name="date">
+          <input type="text" id="inpuReleaseDate" name="release_date">
         </div>
       </div>
       <div class="row mt-5">
@@ -80,7 +80,7 @@
         </div>
         <div class="entryform col-5">
           <label for="inputEvaluation"></label>
-          <select name="Evaluation" id="inputEvaluation">
+          <select name="evaluation_id" id="inputEvaluation">
             @foreach ($evaluations as $e)
             <option value="{{ $e->code}}">{{ $e->content }}</option>
             @endforeach
@@ -93,7 +93,7 @@
         </div>
         <div class="entryform col-5">
           <label for="inputCategory"></label>
-          <select name="Category" id="inputCategory">
+          <select name="category_id" id="inputCategory">
             @foreach ($categories as $c)
             <option value="{{ $c->id }}">{{ $c->name }}</option>
             @endforeach
@@ -115,21 +115,21 @@
         </div>
         <div class="entryform col-5">
           <label for="inputPrice"></label>
-          <select name="published" id="inputPublished">
-            <option value="open">公開</option>
-            <option value="close">非公開</option>
+          <select name="is_published" id="inputPublished">
+            <option value="1">公開</option>
+            <option value="2">非公開</option>
           </select>
         </div>
       </div>
       <div class="row my-5">
         <div class="re col-2 offset-3">
-          <button name="re" value="re">戻る</button>
+          <button name="key" value="re">戻る</button>
         </div>
         <div class="entry col-2">
-          <button name="entry" value="entry">登録して戻る</button>
+          <button name="key" value="entry">登録して戻る</button>
         </div>
         <div class="continue col-2">
-          <button class="continue" value="continue">続けて登録</button>
+          <button name="key" value="continue">続けて登録</button>
         </div>
       </div>
     </form>
