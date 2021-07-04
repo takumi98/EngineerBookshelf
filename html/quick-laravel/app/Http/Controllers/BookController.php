@@ -14,6 +14,11 @@ use App\Book;
 
 class BookController extends Controller
 {
+    // トップページの表示
+    public function showToppage(){
+        return view('book.top');
+    }
+
     // 登録技術書一覧画面の表示
     public function showEntryBooks(){
         // 今回はユーザーが一人なので、Book=登録書籍
