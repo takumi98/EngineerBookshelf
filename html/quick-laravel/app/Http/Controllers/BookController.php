@@ -77,4 +77,9 @@ class BookController extends Controller
             return view('book.entry_books_form', ['evaluations' => $evaluations],['categories' => $categories]);
         }
     }
+
+    // 書籍詳細画面の表示
+    public function showDetaile(){
+        return view('book.detaile');
+    }
 }
