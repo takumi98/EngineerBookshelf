@@ -13,6 +13,8 @@ Route::group(['middleware' => ['guest']], function () {
   Route::get('/login', 'AuthController@showLogin')->name('showLogin');
   // ログイン処理
   Route::post('/login', 'AuthController@login')->name('login');
+  // 書籍詳細ページ
+  Route::get('/detaile', 'BookController@showDetaile')->name('detaile');
 });
 
 // ログイン後
@@ -29,4 +31,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/entry_books_form', 'BookController@showEntryForm')->name('enform');
   // 技術書登録処理
   Route::post('/entry_books', 'BookController@exeEntryForm')->name('ebooks');
+  // 書籍詳細画面
+  Route::get('/detaile', 'BookController@showDetaile')->name('detaile');
 });
