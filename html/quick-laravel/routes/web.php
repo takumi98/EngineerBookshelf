@@ -4,17 +4,17 @@
 
 use App\Http\Controllers\AuthController;
 
-Route::get('/test', 'AuthController@test');
+Route::get('/test', 'BookController@showDetaile');
 
 // ログイン前
 Route::group(['middleware' => ['guest']], function () {
   // ログインフォーム表示
-  Route::get('/', 'AuthController@showLogin')->name('showLogin');
+  // Route::get('/', 'AuthController@showLogin')->name('showLogin');
   Route::get('/login', 'AuthController@showLogin')->name('showLogin');
   // ログイン処理
   Route::post('/login', 'AuthController@login')->name('login');
   // 書籍詳細ページ
-  Route::get('/detaile', 'BookController@showDetaile')->name('detaile');
+  Route::get('/', 'BookController@showDetail')->name('detail');
 });
 
 // ログイン後
@@ -32,5 +32,5 @@ Route::group(['middleware' => ['auth']], function() {
   // 技術書登録処理
   Route::post('/entry_books', 'BookController@exeEntryForm')->name('ebooks');
   // 書籍詳細画面
-  Route::get('/detaile', 'BookController@showDetaile')->name('detaile');
+  Route::get('/detaile', 'BookController@showDetail')->name('detail');
 });

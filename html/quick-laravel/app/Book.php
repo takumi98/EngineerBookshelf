@@ -25,6 +25,23 @@ class Book extends Model
         'is_deleted',
     ];
 
+    // リレーション
+    public function evaluation()
+    {
+        Log::debug('evaluation呼び出し');
+        // return $this->hasOne('App\Evaluation', 'foreign_key', 'code');
+        // 反転
+        return $this->belongsTo('App\Evaluation', 'foreign_key', 'code');
+    }
+    public function categorie()
+    {
+        // Log::debug('categorie呼び出し');
+        // return $this->hasOne('App\Categorie', 'foreign_key', 'id');
+        // 反転
+        return $this->belongsTo('App\Categorie', 'foreign_key', 'id');
+
+    }
+
     // 発売日のデータ型を変換
 
 }

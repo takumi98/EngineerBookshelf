@@ -10,7 +10,9 @@ use App\Http\Requests\sampleRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use App\Book;
-
+use App\Categorie;
+use App\Evaluation;
+use EvaluationsTableSeeder;
 
 class BookController extends Controller
 {
@@ -82,12 +84,27 @@ class BookController extends Controller
     }
 
     // 書籍詳細画面の表示
-    public function showDetaile(Request $request)
+    public function showDetail(Request $request)
     {
         $n = $request;
-        $book = DB::table('books')->find($n['id']);
-        Log::debug($n);
-        var_dump($book);
-        return view('book.detaile', ['bookdata' => $book]);
+        $books = DB::table('books')->find($n['id']);
+
+        // リレーションの使い方がわからなかったため、直接クエリを投げて取得。
+        $cid = $books->category_id;
+        $eid = $books->evaluation_id;
+        $user_id = $books->bookshelf_id;
+
+        // 外部キーのデータを取得
+        $categories = DB::table('categories')->find($cid);
+        $evaluations = DB::table('evaluations')->where('code', $eid)->first();
+        $user = DB::table('users')->find($user_id);
+
+        // 必要なデータを配列に格納
+        $category = $categories->name;
+        $evaluation = $evaluations->content;
+        $user_name = $user->name;
+        $Rdata = array($category,$evaluation,$user_name);
+
+        return view('book.detail', ['bookdata' => $books], ['Rdata' => $Rdata]);
     }
 }
