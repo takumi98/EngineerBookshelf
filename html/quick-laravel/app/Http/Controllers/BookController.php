@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use App\Book;
 use App\Categorie;
 use App\Evaluation;
+use App\Comment;
 use EvaluationsTableSeeder;
 
 class BookController extends Controller
@@ -87,7 +88,9 @@ class BookController extends Controller
     public function showDetail(Request $request)
     {
         $n = $request;
-        $books = DB::table('books')->find($n['id']);
+        $books = DB::table('books')->find($n['book_id']);
+        Log::debug('getメソッド');
+        Log::debug($n);
 
         // リレーションの使い方がわからなかったため、直接クエリを投げて取得。
         $cid = $books->category_id;
@@ -105,6 +108,30 @@ class BookController extends Controller
         $user_name = $user->name;
         $Rdata = array($category,$evaluation,$user_name);
 
-        return view('book.detail', ['bookdata' => $books], ['Rdata' => $Rdata]);
+        // コメントデータ
+        $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
+
+        return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $comments]);
+    }
+
+    public function exeComment(Request $request)
+    {
+        $comments = $request->all();
+        // コメント登録に必要なデータ
+        $commentData = ['user_id' => Auth::id(), 'book_id' => $comments['key'], 'comment' => $comments['comment']];
+        
+        \DB::beginTransaction();
+        try{
+            // 本を登録
+            Comment::create($commentData);
+            Log::debug('登録完了');
+            \DB::commit();
+        } catch(\Throwable $e){
+            Log::debug('トランザクションエラー');
+            Log::debug($e);
+            \DB::rollback();
+            abort(500);
+        }
+        return redirect()->route('detail',['book_id' => $comments['key'],]);
     }
 }

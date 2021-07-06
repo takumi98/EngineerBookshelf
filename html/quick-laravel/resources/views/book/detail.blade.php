@@ -91,7 +91,7 @@
 				<div class="title col-1">
 					<h2>詳細</h1>
 				</div>
-				<div class="textcontainer col-10 m-3 border">
+				<div class="textcontainer col-10 m-3 p-3 border">
 					{{ $bookdata->content }}
 				</div>
 			</div>
@@ -103,8 +103,9 @@
 				</div>
 				<div class="textcontainer col-12 m-3">
 					<ul>
-						<li>コメント1</li>
-						<li>コメント2</li>
+						@foreach ($comments as $comment)
+						<li>{{ $comment->user_id}}さん：{{ $comment->comment }}　({{ $comment->created_at}})</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
@@ -114,7 +115,7 @@
 					コメント
 				</div>
 				<div class="col-9">
-					<form class="comment-form" method="POST" action="">
+					<form class="comment-form" method="POST" action="{{ route('execomment')}}">
 						@csrf
 						<input type="text" id="inputComment" name="comment">
 						<button name="key" value="{{ $bookdata->id }}">投稿</button>
