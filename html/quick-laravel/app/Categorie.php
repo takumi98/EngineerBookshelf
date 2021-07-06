@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model
 {
+    // テーブル名
+    protected $table = 'categories';
+
     // リレーション
     public function book()
     {

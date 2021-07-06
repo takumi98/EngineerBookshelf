@@ -1,8 +1,8 @@
 .bookdetail {
-    height: 300px;
+    height: auto;
 }
 .detailtext {
-    height: 200px;
+    height: auto;
 }
 .detailtext > .title {
     text-align: center;

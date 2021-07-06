@@ -35,7 +35,7 @@ class Book extends Model
     }
     public function categorie()
     {
-        Log::debug('categorie呼び出し');
+        // Log::debug('categorie呼び出し');
         // return $this->hasOne('App\Categorie', 'foreign_key', 'id');
         // 反転
         return $this->belongsTo('App\Categorie', 'foreign_key', 'id');

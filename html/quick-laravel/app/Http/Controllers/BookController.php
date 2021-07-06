@@ -84,35 +84,41 @@ class BookController extends Controller
     }
 
     // 書籍詳細画面の表示
-    public function showDetaile(Request $request)
+    public function showDetail(Request $request)
     {
         $n = $request;
-        $book = DB::table('books')->find($n['id']);
+        $books = DB::table('books')->find($n['id']);
+        $evaluation = DB::table('evaluations')->first();
         Log::debug('getメソッド');
         Log::debug($n);
-        var_dump($book);
+        // var_dump($books);
         // ddd($book->evaluation);
-
-        // var_dump($book->categorie->name);
-        // ddd($book->categorie->name);
+        // ddd($book);
+        // ddd($evaluation->books);
+        // var_dump($book->evaluation);
+        // ddd($books->evaluation()->content);
 
         // リレーションの使い方がわからなかったため、直接クエリを投げて取得。
-        $cid = $book->category_id;
-        $eid = $book->evaluation_id;
+        $cid = $books->category_id;
+        $eid = $books->evaluation_id;
+        $user_id = $books->bookshelf_id;
         var_dump('デバッグ,id');
         var_dump($cid);
         $categories = DB::table('categories')->find($cid);
         $evaluations = DB::table('evaluations')->where('code', $eid)->first();
+        $user = DB::table('users')->find($user_id);
         var_dump($categories);
         var_dump($evaluations);
         $category = $categories->name;
         $evaluation = $evaluations->content;
-        $Rdata = array($category,$evaluation);
+        $user_name = $user->name;
+        $Rdata = array($category,$evaluation,$user_name);
         // var_dump('データ');
         // var_dump($category);
         // var_dump($evaluation);
         // var_dump($Rdata);
         // 引数を3つにするとエラーになる？使用？
-        return view('book.detaile', ['bookdata' => $book], ['Rdata' => $Rdata]);
+        return view('book.detail', ['bookdata' => $books], ['Rdata' => $Rdata]);
+        // return view('test', ['books'=>$books]);
     }
 }
