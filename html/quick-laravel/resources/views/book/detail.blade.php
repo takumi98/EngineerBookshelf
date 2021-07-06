@@ -104,7 +104,7 @@
 				<div class="textcontainer col-12 m-3">
 					<ul>
 						@foreach ($comments as $comment)
-						<li>{{ $comment->user_id}}さん：{{ $comment->comment }}　({{ $comment->created_at}})</li>
+						<li>{{ $comment->user->name}}さん：{{ $comment->comment }}　({{ $comment->created_at}})</li>
 						@endforeach
 					</ul>
 				</div>

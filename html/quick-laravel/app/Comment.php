@@ -17,4 +17,9 @@ class Comment extends Model
         'comment',
         'is_deleted',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

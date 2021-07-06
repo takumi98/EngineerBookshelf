@@ -13,6 +13,7 @@ use App\Book;
 use App\Categorie;
 use App\Evaluation;
 use App\Comment;
+use App\User;
 use EvaluationsTableSeeder;
 
 class BookController extends Controller
@@ -110,8 +111,12 @@ class BookController extends Controller
 
         // コメントデータ
         $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
+        // $comment = Comment::find(1);
+        // echo $comment->user;
+        $user_comment = User::find($n['book_id'])->comments;
+        // ddd($user_comment);
 
-        return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $comments]);
+        return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $user_comment]);
     }
 
     public function exeComment(Request $request)
