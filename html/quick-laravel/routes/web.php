@@ -9,12 +9,12 @@ Route::get('/test', 'AuthController@test');
 // ログイン前
 Route::group(['middleware' => ['guest']], function () {
   // ログインフォーム表示
-  Route::get('/', 'AuthController@showLogin')->name('showLogin');
+  // Route::get('/', 'AuthController@showLogin')->name('showLogin');
   Route::get('/login', 'AuthController@showLogin')->name('showLogin');
   // ログイン処理
   Route::post('/login', 'AuthController@login')->name('login');
   // 書籍詳細ページ
-  Route::get('/detaile', 'BookController@showDetaile')->name('detaile');
+  Route::get('/', 'BookController@showDetaile')->name('detaile');
 });
 
 // ログイン後

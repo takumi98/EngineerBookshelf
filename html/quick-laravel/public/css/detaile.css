@@ -1,26 +1,20 @@
 .bookdetail {
     height: 300px;
 }
-.img {
-    background-color: aliceblue;
-}
-.book {
-    background-color: aquamarine;
-}
-
 .detailtext {
     height: 200px;
-    border: solid;
 }
 .detailtext > .title {
     text-align: center;
 }
 .textcontainer {
-    background-color: brown;
-    border: solid;
     text-align: left;
 }
 
 .comment-form input {
     width: 80%;
+}
+
+.comment_title {
+    text-align: right;
 }

@@ -10,7 +10,9 @@ use App\Http\Requests\sampleRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use App\Book;
-
+use App\Categorie;
+use App\Evaluation;
+use EvaluationsTableSeeder;
 
 class BookController extends Controller
 {
@@ -86,8 +88,31 @@ class BookController extends Controller
     {
         $n = $request;
         $book = DB::table('books')->find($n['id']);
+        Log::debug('getメソッド');
         Log::debug($n);
         var_dump($book);
-        return view('book.detaile', ['bookdata' => $book]);
+        // ddd($book->evaluation);
+
+        // var_dump($book->categorie->name);
+        // ddd($book->categorie->name);
+
+        // リレーションの使い方がわからなかったため、直接クエリを投げて取得。
+        $cid = $book->category_id;
+        $eid = $book->evaluation_id;
+        var_dump('デバッグ,id');
+        var_dump($cid);
+        $categories = DB::table('categories')->find($cid);
+        $evaluations = DB::table('evaluations')->where('code', $eid)->first();
+        var_dump($categories);
+        var_dump($evaluations);
+        $category = $categories->name;
+        $evaluation = $evaluations->content;
+        $Rdata = array($category,$evaluation);
+        // var_dump('データ');
+        // var_dump($category);
+        // var_dump($evaluation);
+        // var_dump($Rdata);
+        // 引数を3つにするとエラーになる？使用？
+        return view('book.detaile', ['bookdata' => $book], ['Rdata' => $Rdata]);
     }
 }

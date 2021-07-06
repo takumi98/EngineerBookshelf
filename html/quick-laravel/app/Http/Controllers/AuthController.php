@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Book;
 
 class AuthController extends Controller
 {
@@ -22,6 +23,8 @@ class AuthController extends Controller
         // $encryption = encrypt('root');
         // $decryption = decrypt('eyJpdiI6Ik5KazJXaDIxMEVDbFprRW9hZm9aRHc9PSIsInZhbHVlIjoiUVFIYWR3S3JhMCtreVhrRlZIR05KZz09IiwibWFjIjoiOGY3NTc0N2E1ZDMxODkyZjUzNjQ4NWU4M2E2YTc0Zjc3YTk5MWNkM2I1ODMxMzBmNThkNDUzZDc0YTBhZGQ0YiJ9');
         // ddd($decryption);
+        $book = Book::orderBy('created_at', 'asc')->paginate(10);
+        return view('test', compact('book'));
     }
     // ログイン画面の表示
     public function showLogin(){

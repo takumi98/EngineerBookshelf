@@ -20,10 +20,12 @@
 		<link href="{{ asset('css/detaile.css')}}" rel="stylesheet" />
 	</head>
 	<body>
+	<div class="container my-3 border">
+		<h2>技術書詳細</h2>
 		<div class="container">
-			<div class="bookdetail row mt-5">
+			<div class="bookdetail row mt-5 border">
 				<div class="img col-4">{{ $bookdata->image_file_name }}</div>
-				<div class="book col-8">
+				<div class="book col-8 border">
 					<!-- 本詳細画面 -->
 					<div class="row mt-3">
 						<div class="head col-2 offset-1">
@@ -62,7 +64,7 @@
 							評価
 						</div>
 						<div class="col-8">
-							{{ $bookdata->evaluation_id }}
+							{{ $Rdata[1] }}
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -70,7 +72,7 @@
 							カテゴリー
 						</div>
 						<div class="col-8">
-							{{ $bookdata->category_id }}
+							{{ $Rdata[0] }}
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -85,17 +87,17 @@
 			</div>
 		</div>
     <div class="container">
-      <div class="detailtext row">
+      <div class="detailtext row border">
 				<div class="title col-1">
 					<h2>詳細</h1>
 				</div>
-				<div class="textcontainer col-10 m-3">
-					詳細テキスト
+				<div class="textcontainer col-10 m-3 border">
+					{{ $bookdata->content }}
 				</div>
 			</div>
     </div>
     <div class="container">
-      <div class="comment row pt-3">
+      <div class="comment row pt-3 border">
 				<div class="title col-12">
 					<h2>コメント</h1>
 				</div>
@@ -103,24 +105,30 @@
 					<ul>
 						<li>コメント1</li>
 						<li>コメント2</li>
-						<li>komennn</li>
 					</ul>
 				</div>
 			</div>
+		@auth
 			<div class="search row mt-2">
-      <div class="col-1 offset-1">
-        コメント
-      </div>
-      <div class="col-9">
-        <form class="comment-form" action="" metdod="POST">
-          @csrf
-          <input type="text" id="inputComment" name="comment">
-          <button name="key">
-            投稿
-          </button>
-        </form>
-      </div>
+				<div class="comment_title col-2">
+					コメント
+				</div>
+				<div class="col-9">
+					<form class="comment-form" action="" metdod="POST">
+						@csrf
+						<input type="text" id="inputComment" name="comment">
+						<button name="key" value="comment">投稿</button>
+					</form>
+				</div>
+			<div>
+			@endauth
+
+			@guest
+			<p>ログインユーザーはコメントができます。</p>
+			@endguest
+			</div>
     </div>
-    </div>
+  </div>
+	</div>
 	</body>
 </html>

@@ -10,15 +10,11 @@
   <div class="continer">
   <h1>ポスト作成</h1>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@foreach ($book as $b)
+<tr>
+　<td>{{ optional($b->evaluation)->post_id }}</td>
+</tr>
+@endforeach
   </div>
 </body>
 </html>
