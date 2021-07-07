@@ -2,9 +2,6 @@
     text-align: center;
 }
 
-.entrytitle {
-}
-
 .entryform {
     display: flex;
     justify-content: center;
@@ -17,4 +14,12 @@
 
 .entryform > .published {
     width: 100%;
+}
+
+.imgtitle {
+    padding: 35px;
+}
+
+.img {
+    height: 100px;
 }

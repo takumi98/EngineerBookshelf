@@ -43,5 +43,15 @@ class Book extends Model
     }
 
     // 発売日のデータ型を変換
-
+    protected $casts = [
+        'release_date' => 'datetime:Y年m月d日'
+    ];
+    
+        public function get_name(){
+            return $this->name;
+        }
+    
+        public function set_name($name){
+            $this->name = $name;
+        }
 }

@@ -27,7 +27,7 @@
 ?>
   <div class="container">
     <h1>書籍情報</h1>
-    <form class="form-signin" method="POST" action="{{ route('ebooks')}}">
+    <form class="form-signin" method="POST" action="{{ route('ebooks')}}" enctype="multipart/form-data">
       @csrf
       <div class="row mt-5 pt-4">
         <div class="entrytitle col-2 offset-2">
@@ -39,12 +39,17 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="entrytitle col-2 offset-2">
+        <div class="imgtitle col-2 offset-2">
           表紙画像
         </div>
-        <div class="entryform col-5">
+        <div class="img col-2">
+          <div>
+            画像
+          </div>
+        </div>
+        <div class="entryform col-4">
           <label for="inputImg"></label>
-          <input type="text" id="inputImg" name="image_file_name">
+          <input type="file" id="inputImg" name="image_file_name">
         </div>
       </div>
       <div class="row mt-5">
