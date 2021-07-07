@@ -117,7 +117,7 @@ class BookController extends Controller
         $Rdata = array($category,$evaluation,$user_name);
 
         // コメントデータ
-        $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
+        // $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
         // $comment = Comment::find(1);
         // echo $comment->user;
         $user_comment = User::find($n['book_id'])->comments;
@@ -145,5 +145,21 @@ class BookController extends Controller
             abort(500);
         }
         return redirect()->route('detail',['book_id' => $comments['key'],]);
+    }
+
+    // 検索結果一覧ページ
+    public function showSearch(Request $request)
+    {
+        $word = $request;
+        $search_word = $word->search;
+        if($search_word){
+            $books = Book::where('name', 'like', '%' . $search_word . '%')->paginate(20);
+            $book_count = Book::where('name', 'like', '%' . $search_word . '%')->count();
+        } else{
+            $books = DB::table('books')->orderBy('updated_at', 'DESC')->paginate(20);
+            $book_count = DB::table('books')->count();
+        }
+
+        return view('book.search',['books' => $books, 'book_count' => $book_count]);
     }
 }

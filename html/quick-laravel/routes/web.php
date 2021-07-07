@@ -14,7 +14,8 @@ Route::group(['middleware' => ['guest']], function () {
   Route::post('/detaile', 'BookController@exeComment')->name('execomment');
   // トップページ
   Route::get('/', 'BookController@showToppage')->name('top');
-
+  // 検索結果一覧ページ
+  Route::get('/search', 'BookController@showSearch')->name('search');
 });
 
 // ログイン後
@@ -37,4 +38,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/detaile', 'BookController@showDetail')->name('detail');
   // コメント登録処理
   Route::post('/detaile', 'BookController@exeComment')->name('execomment');
+  // 検索結果一覧ページ
+  Route::get('/search', 'BookController@showSearch')->name('search');
 });
