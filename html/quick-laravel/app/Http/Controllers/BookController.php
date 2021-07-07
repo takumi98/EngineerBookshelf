@@ -115,13 +115,13 @@ class BookController extends Controller
         $evaluation = $evaluations->content;
         $user_name = $user->name;
         $Rdata = array($category,$evaluation,$user_name);
-
-        // コメントデータ
-        // $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
-        // $comment = Comment::find(1);
-        // echo $comment->user;
-        $user_comment = User::find($n['book_id'])->comments;
-        // ddd($user_comment);
+        
+        // コメントがない場合の例外処理
+        try {
+            $user_comment = User::find($n['book_id'])->comments;
+        } catch (\Throwable $e) {
+            $user_comment = null;
+        }
 
         return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $user_comment]);
     }

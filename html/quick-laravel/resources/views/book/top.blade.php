@@ -14,14 +14,12 @@
   <div class="container">
     <h3>新着一覧</h1>
     <form class="comment-form" method="GET" action="{{ route('detail') }}">
-        @csrf
       <div class="row mt-5 pt-4 offset-1">
         @foreach ($books as $book)
         <div class="book col-2">
           <div class="bookImg">
             {{ $book->image_file_name }}
-            <input class="book_img" type="image" name="book_id" value="{{ $book->id }}">
-            {{ $book->id }}
+            <input class="book_img" type="submit" name="book_id" value="{{ $book->id }}">
           </div>
           <div class="bookTitle">
             {{ $book->name }}
@@ -38,8 +36,7 @@
         書籍検索
       </div>
       <div class="col-5">
-        <form class="search-form" action="" method="GET">
-          @csrf
+        <form class="search-form" action="{{ route('search') }}" method="GET">
           <input type="text" id="inputSearch" name="search">
           <button>
             検索
