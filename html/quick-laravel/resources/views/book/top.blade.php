@@ -26,12 +26,14 @@
           </div>
         </div>
         @endforeach
-        <div class="more col-3 offset-8">
-          <button>もっと見る</button>
-        </div>
       </div>
 		</form>
-    <div class="search row mt-5 mt-4">
+    <div class="more mt-3 col-3 offset-8">
+      <form action="{{ route('search') }}">
+        <button>もっと見る</button>
+      </form>
+    </div>
+    <div class="search row mt-3 mt-4">
       <div class="col-2 offset-1">
         書籍検索
       </div>
