@@ -103,14 +103,18 @@
 				</div>
 				<div class="textcontainer col-12 m-3">
 					<ul>
+					@if(!isset( $comments ))
+						<p>コメントなし</p>
+					@else
 						@foreach ($comments as $comment)
 						<li>{{ $comment->user->name}}さん：{{ $comment->comment }}　({{ $comment->created_at}})</li>
 						@endforeach
+					@endif
 					</ul>
 				</div>
 			</div>
 		@auth
-			<div class="search row mt-2">
+			<div class="search row mt-2 mb-4">
 				<div class="comment_title col-md-3">
 					コメント
 				</div>

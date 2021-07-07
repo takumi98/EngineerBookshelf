@@ -18,6 +18,13 @@ use EvaluationsTableSeeder;
 
 class BookController extends Controller
 {
+    // トップページの表示
+    public function showToppage(){
+        $books = DB::table('books')->orderBy('updated_at', 'DESC')->limit(5)->get();
+        // ddd($books);
+        return view('book.top', ['books' => $books]);
+    }
+
     // 登録技術書一覧画面の表示
     public function showEntryBooks()
     {
@@ -125,13 +132,13 @@ class BookController extends Controller
         $evaluation = $evaluations->content;
         $user_name = $user->name;
         $Rdata = array($category,$evaluation,$user_name);
-
-        // コメントデータ
-        $comments = DB::table('comments')->where('book_id', '=', $n['book_id'])->get();
-        // $comment = Comment::find(1);
-        // echo $comment->user;
-        $user_comment = User::find($n['book_id'])->comments;
-        // ddd($user_comment);
+        
+        // コメントがない場合の例外処理
+        try {
+            $user_comment = User::find($n['book_id'])->comments;
+        } catch (\Throwable $e) {
+            $user_comment = null;
+        }
 
         return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $user_comment]);
     }
@@ -155,5 +162,21 @@ class BookController extends Controller
             abort(500);
         }
         return redirect()->route('detail',['book_id' => $comments['key'],]);
+    }
+
+    // 検索結果一覧ページ
+    public function showSearch(Request $request)
+    {
+        $word = $request;
+        $search_word = $word->search;
+        if($search_word){
+            $books = Book::where('name', 'like', '%' . $search_word . '%')->paginate(20);
+            $book_count = Book::where('name', 'like', '%' . $search_word . '%')->count();
+        } else{
+            $books = DB::table('books')->orderBy('updated_at', 'DESC')->paginate(20);
+            $book_count = DB::table('books')->count();
+        }
+
+        return view('book.search',['books' => $books, 'book_count' => $book_count]);
     }
 }
