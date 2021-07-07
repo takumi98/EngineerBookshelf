@@ -18,6 +18,13 @@ use EvaluationsTableSeeder;
 
 class BookController extends Controller
 {
+    // トップページの表示
+    public function showToppage(){
+        $books = DB::table('books')->orderByRaw('updated_at ASC')->limit(5)->get();
+        // ddd($books);
+        return view('book.top', ['books' => $books]);
+    }
+
     // 登録技術書一覧画面の表示
     public function showEntryBooks()
     {
