@@ -1,0 +1,23 @@
+.bookdetail {
+    height: auto;
+}
+.detailtext {
+    height: auto;
+}
+.detailtext > .title {
+    text-align: center;
+}
+.textcontainer {
+    text-align: left;
+}
+
+.comment-form input {
+    width: 80%;
+}
+
+.comment_title {
+    text-align: right;
+}
+ul {
+    list-style: none;
+}
