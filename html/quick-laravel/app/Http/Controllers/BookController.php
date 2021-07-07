@@ -20,7 +20,7 @@ class BookController extends Controller
 {
     // トップページの表示
     public function showToppage(){
-        $books = DB::table('books')->orderByRaw('updated_at ASC')->limit(5)->get();
+        $books = DB::table('books')->orderBy('updated_at', 'DESC')->limit(5)->get();
         // ddd($books);
         return view('book.top', ['books' => $books]);
     }
