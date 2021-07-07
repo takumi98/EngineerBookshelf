@@ -13,52 +13,25 @@
 <body>
   <div class="container">
     <h3>新着一覧</h1>
-    <div class="row mt-5 pt-4">
-      <div class="book col-2 offset-1">
-        <div class="bookImg">
-          img
+    <form class="comment-form" method="GET" action="{{ route(detail) }}">
+        @csrf
+      <div class="row mt-5 pt-4 offset-1">
+        @foreach ($books as $book)
+        <div class="book col-2">
+          <div class="bookImg">
+            {{ $book->image_file_name }}
+            <input class="book_img" type="image" name="book_id" value="{{ route('detail')}}">
+          </div>
+          <div class="bookTitle">
+            {{ $book->name }}
+          </div>
         </div>
-        <div class="bookTitle">
-          タイトル
-        </div>
-      </div>
-      <div class="book col-2">
-        <div class="bookImg">
-          i1mg
-        </div>
-        <div class="bookTitle">
-          タイトル
-        </div>
-      </div>
-      <div class="book col-2">
-        <div class="bookImg">
-          img
-        </div>
-        <div class="bookTitle">
-          タイトル
+        @endforeach
+        <div class="more col-3 offset-8">
+          <button>もっと見る</button>
         </div>
       </div>
-      <div class="book col-2">
-        <div class="bookImg">
-          img
-        </div>
-        <div class="bookTitle">
-          タイトル
-        </div>
-      </div>
-      <div class="book col-2">
-        <div class="bookImg">
-          img
-        </div>
-        <div class="bookTitle">
-          タイトル
-        </div>
-      </div>
-      <div class="more col-3 offset-9">
-        <button>もっと見る</button>
-      </div>
-    </div>
-    
+		</form>
     <div class="search row mt-5 mt-4">
       <div class="col-2 offset-1">
         書籍検索
