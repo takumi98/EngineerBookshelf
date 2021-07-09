@@ -12,8 +12,7 @@ class Evaluation extends Model
     // リレーション
     public function books()
     {
-        // return $this->belongsTo('App\Book', 'foreign_key', 'evaluation_id');
-        // 反転
-        return $this->hasMany('App\Book', 'foreign_key', 'evaluation_id');
+        return $this->hasMany('App\Book');
+        // return $this->belongsTo('App\Book');
     }
 }

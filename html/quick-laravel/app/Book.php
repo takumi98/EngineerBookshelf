@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Book extends Model
 {
@@ -28,18 +29,21 @@ class Book extends Model
     // リレーション
     public function evaluation()
     {
+        Log::debug('<<<リレーション>>>');
         Log::debug('evaluation呼び出し');
-        // return $this->hasOne('App\Evaluation', 'foreign_key', 'code');
-        // 反転
+        // return $this->hasMany('App\Evaluation', 'evaluation_id', 'code');
         return $this->belongsTo('App\Evaluation', 'foreign_key', 'code');
     }
-    public function categorie()
+    public function category()
     {
-        // Log::debug('categorie呼び出し');
-        // return $this->hasOne('App\Categorie', 'foreign_key', 'id');
-        // 反転
-        return $this->belongsTo('App\Categorie', 'foreign_key', 'id');
+        Log::debug('<<<リレーション>>>');
+        Log::debug('categorie呼び出し');
+        return $this->belongsTo('App\Category');
+    }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 
     // 発売日のデータ型を変換

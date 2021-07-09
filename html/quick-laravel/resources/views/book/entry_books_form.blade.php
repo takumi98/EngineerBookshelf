@@ -12,6 +12,9 @@
 </head>
 
 <body>
+  <header>
+		@include('header')
+	</header>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
