@@ -22,6 +22,10 @@
 <body>
   
 <body>
+	<header>
+		@include('header')
+	</header>
+
   <div class="container mt-3">
 		<div class="search_result">
 			検索結果（{{ $book_count }}件）

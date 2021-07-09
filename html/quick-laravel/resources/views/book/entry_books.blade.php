@@ -11,6 +11,10 @@
   <link href="{{ asset('css/entry_books.css')}}" rel="stylesheet">
 
 <body>
+  <header>
+		@include('header')
+	</header>
+
   <div class="container">
     <h1>登録技術書一覧</h1>
   <table class="table table-bordered">

@@ -19,7 +19,11 @@
 		<script src="{{ asset('js/app.js')}}" defer></script>
 		<link href="{{ asset('css/detaile.css')}}" rel="stylesheet" />
 	</head>
+
 	<body>
+		<header>
+			@include('header')
+		</header>
 	<div class="container my-3 border">
 		<h2>技術書詳細</h2>
 		<div class="container">
@@ -113,7 +117,7 @@
 					</ul>
 				</div>
 			</div>
-		@auth
+			@auth
 			<div class="search row mt-2 mb-4">
 				<div class="comment_title col-md-3">
 					コメント

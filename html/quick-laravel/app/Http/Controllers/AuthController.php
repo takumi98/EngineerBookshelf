@@ -30,7 +30,7 @@ class AuthController extends Controller
             Log::debug('ユーザー情報');
             Log::debug($request);
 
-            return redirect()->route('showEbooks')->with('login_success', 'ログイン成功しました!');
+            return redirect()->route('top')->with('login_success', 'ログイン成功しました!');
         }
 
         return back()->withErrors([

@@ -11,6 +11,10 @@
   <link href="{{ asset('css/top.css')}}" rel="stylesheet">
 </head>
 <body>
+  <header>
+		@include('header')
+	</header>
+
   <div class="container">
     <h3>新着一覧</h1>
     <form class="comment-form" method="GET" action="{{ route('detail') }}">
@@ -46,6 +50,10 @@
         </form>
       </div>
     </div>
+    <?php
+		// var_dump($tests);
+		?>
+
   </div>
 </body>
 </html>

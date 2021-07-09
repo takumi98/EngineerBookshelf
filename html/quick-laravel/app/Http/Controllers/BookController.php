@@ -10,10 +10,9 @@ use App\Http\Requests\sampleRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use App\Book;
-use App\Categorie;
+use App\Category;
 use App\Evaluation;
 use App\Comment;
-use App\User;
 use EvaluationsTableSeeder;
 
 class BookController extends Controller
@@ -22,7 +21,22 @@ class BookController extends Controller
     public function showToppage(){
         $books = DB::table('books')->orderBy('updated_at', 'DESC')->limit(5)->get();
         // ddd($books);
-        return view('book.top', ['books' => $books]);
+        
+// テスト
+         // foreachで回す必要あり？
+$test = Category::find(1);
+// オブジェクトを取得
+$test->books;
+Log::debug($test->books);
+foreach($test->books as $books){
+    $books->name;
+    Log::debug('<<<book.name>>>');
+    Log::debug($books);
+};
+
+
+
+        return view('book.top', ['books' => $books,  'tests' => $test]);
     }
 
     // 登録技術書一覧画面の表示
@@ -135,14 +149,27 @@ class BookController extends Controller
         
         // コメントがない場合の例外処理
         try {
-            $user_comment = User::find($n['book_id'])->comments;
+            // $user_comment = User::find($n['book_id'])->comments;
+            $user_comment = Book::find($n['book_id'])->comments;
+            // $book = Comment::find(1)->book;
+            // $test = Category::find(1)->books;
+            // $test = Book::find(1)->evaluation;
+            // $test = Evaluation::find(1)->books;
+        
+            // $test = Book::find(1)->category->name;
+            // ddd($test);
+            // ddd($user_comment);
         } catch (\Throwable $e) {
+            // ddd($e);
             $user_comment = null;
+            // return $e;
         }
+        // ddd($n['book_id']);
 
         return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $user_comment]);
     }
 
+    // コメント登録処理
     public function exeComment(Request $request)
     {
         $comments = $request->all();
