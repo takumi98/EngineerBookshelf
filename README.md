@@ -3,9 +3,12 @@
 書籍の登録、検索を行うアプリです。
 学習の記録として、書籍を登録していきます。
 今後は書籍に対するコメントからの検索や、ISBNコードを使って登録出来るように拡張していきたいと考えています。
-使用画面
 
-### 
+</br>**使用画面**
+</br>![image](https://user-images.githubusercontent.com/68890733/130909887-887902d9-a4fe-4eba-a8bd-a259a2c64481.png)
+</br>![image](https://user-images.githubusercontent.com/68890733/130910498-3b564989-b52c-4e91-ad4e-3c3a1d601cd9.png)
+
+### <詳細>
 画面遷移図
 ![image](https://user-images.githubusercontent.com/68890733/130906212-2d1e6a11-5bfd-4b39-a770-3e632ec588a2.png)
 
@@ -20,12 +23,16 @@
 | 技術書登録ページ| 技術書を新たに登録出来る。| 
 |技術書編集機能|　技術書についての記載内容を変更できる。|
 |技術書削除機能|登録した技術書を削除出来る。|
+
+</br>**ER図**
+</br>![image](https://user-images.githubusercontent.com/68890733/130910750-ee96fb66-f08d-4537-8b50-646d0e27178d.png)
+
 ### <ツール/環境/言語>
 - ツール：Jira/Confluence/Figma/Git/GitHub
 - 環境：Docker
 - 言語：Laravel6
 
-
+----
 ## 詳細設定
 
 ## 教科書
