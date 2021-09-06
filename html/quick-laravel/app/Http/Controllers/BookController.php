@@ -20,23 +20,15 @@ class BookController extends Controller
     // トップページの表示
     public function showToppage(){
         $books = DB::table('books')->orderBy('updated_at', 'DESC')->limit(5)->get();
-        // ddd($books);
-        
-// テスト
-         // foreachで回す必要あり？
-$test = Category::find(1);
-// オブジェクトを取得
-$test->books;
-Log::debug($test->books);
-foreach($test->books as $books){
-    $books->name;
-    Log::debug('<<<book.name>>>');
-    Log::debug($books);
-};
 
-
-
-        return view('book.top', ['books' => $books,  'tests' => $test]);
+        $category = Category::find(1);
+        // オブジェクトを取得
+        $category->books;
+        Log::debug($category->books);
+        foreach($category->books as $books){
+            $books->name;
+        };
+        return view('book.top', ['books' => $books,  'tests' => $category]);
     }
 
     // 登録技術書一覧画面の表示
@@ -149,22 +141,10 @@ foreach($test->books as $books){
         
         // コメントがない場合の例外処理
         try {
-            // $user_comment = User::find($n['book_id'])->comments;
             $user_comment = Book::find($n['book_id'])->comments;
-            // $book = Comment::find(1)->book;
-            // $test = Category::find(1)->books;
-            // $test = Book::find(1)->evaluation;
-            // $test = Evaluation::find(1)->books;
-        
-            // $test = Book::find(1)->category->name;
-            // ddd($test);
-            // ddd($user_comment);
         } catch (\Throwable $e) {
-            // ddd($e);
             $user_comment = null;
-            // return $e;
         }
-        // ddd($n['book_id']);
 
         return view('book.detail', ['bookdata' => $books, 'Rdata' => $Rdata, 'comments' => $user_comment]);
     }
